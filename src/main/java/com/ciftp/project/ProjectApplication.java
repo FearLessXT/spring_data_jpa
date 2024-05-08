@@ -17,28 +17,29 @@ public class ProjectApplication {
 		SpringApplication.run(ProjectApplication.class, args);
 	}
 
-//	@Bean
-//	public CommandLineRunner commandLineRunner(
-//			AuthorRepository repository,
-//			VideoRepository videoRepository
-//	) {
-//		return args -> {
-//			for (int i = 0; i < 20; i++) {
-//				Faker faker = new Faker();
-//				var author = Author.builder()
-//						.firstName(faker.name().firstName())
-//						.lastName(faker.name().lastName())
-//						.age(faker.number().numberBetween(20, 40))
-//						.email("jame" + i + "@doe.com")
-//						.build();
-//				author = repository.save(author);
-//			}
-//
-////			var video = Video.builder()
-////					.name("lesson1")
-////					.length(5)
-////					.build();
-////			videoRepository.save(video);
-//		};
-//	}
+	@Bean
+	public CommandLineRunner commandLineRunner(
+			AuthorRepository repository,
+			VideoRepository videoRepository
+	) {
+		return args -> {
+			// You can command the below code when the first run is done.
+			for (int i = 0; i < 20; i++) {
+				Faker faker = new Faker();
+				var author = Author.builder()
+						.firstName(faker.name().firstName())
+						.lastName(faker.name().lastName())
+						.age(faker.number().numberBetween(20, 40))
+						.email(faker.name().firstName() + faker.name().lastName() + "@gmail.com")
+						.build();
+				author = repository.save(author);
+			}
+
+			var video = Video.builder()
+					.name("lesson1")
+					.length(5)
+					.build();
+			videoRepository.save(video);
+		};
+	}
 }
