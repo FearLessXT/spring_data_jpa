@@ -6,11 +6,9 @@ import com.ciftp.project.repositories.AuthorRepository;
 import com.ciftp.project.repositories.LectureRepository;
 import com.ciftp.project.service.AuthorService;
 import lombok.RequiredArgsConstructor;
-import org.apache.catalina.connector.Response;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -32,23 +30,14 @@ public class AuthorController {
 
         var response = authorRepository.findAll(specification);
 
-        if (response == null) {
-            return null;
-        }
-
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     @PostMapping("api/lecture")
-    public ResponseEntity<?> lecutre(@RequestBody LectureRequest lectureRequest) {
+    public ResponseEntity<?> lecture(@RequestBody LectureRequest lectureRequest) {
 
         var response = lectureRepository.findByName(lectureRequest.getName());
 
         return new ResponseEntity<>(response, HttpStatus.OK);
-    }
-
-    @GetMapping("api/hello")
-    public ResponseEntity<?> test() {
-        return new ResponseEntity<>("Hello", HttpStatus.OK);
     }
 }

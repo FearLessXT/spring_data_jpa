@@ -1,11 +1,7 @@
 package com.ciftp.project;
 
-import com.ciftp.project.models.Author;
-import com.ciftp.project.models.Video;
 import com.ciftp.project.repositories.AuthorRepository;
 import com.ciftp.project.repositories.VideoRepository;
-import com.github.javafaker.DateAndTime;
-import com.github.javafaker.Faker;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

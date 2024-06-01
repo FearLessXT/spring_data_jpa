@@ -1,0 +1,31 @@
+services:
+  postgres:
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5435:5432"
+    volumes:
+      - postgres:/var/lib/docker/volumes/postgres/_data
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/postgres
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: password
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+      SPRING_JPA_DATABASE: postgresql
+      SPRING_JPA_SHOW_SQL: "true"
+      SPRING_APPLICATION_NAME: project
+      LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_SECURITY: TRACE
+    depends_on:
+      - postgres
+volumes:
+  postgres:
