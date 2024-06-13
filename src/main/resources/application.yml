@@ -26,3 +26,12 @@ security:
       expiration: 86400000
       refresh-token:
         expiration: 604800000
+
+resilience4j.retry:
+  instances:
+    orderService:
+      max-attempts: 3
+      wait-duration:
+        seconds: 5
+server:
+  port: 8081
